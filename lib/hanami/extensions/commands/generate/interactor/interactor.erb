@@ -1,0 +1,20 @@
+require "hanami/interactor"
+
+<%- depth = module_names.size -%>
+<%- module_names.each_with_index do |e, i| -%>
+<%= "  " * i %>module <%= e %>
+<%- end -%>
+<%= "  " * depth %>class <%= class_name %>
+<%= "  " * depth %>  include Hanami::Interactor
+<%= "  " * depth %>  
+<%= "  " * depth %>  def initialize()
+<%= "  " * depth %>    # set up the object
+<%= "  " * depth %>  end
+<%= "  " * depth %>  
+<%= "  " * depth %>  def call(params)
+<%= "  " * depth %>    # get it done
+<%= "  " * depth %>  end
+<%= "  " * depth %>end
+<%- (module_names.size - 1).downto(0) do |i| -%>
+<%= "  " * i %>end
+<%- end -%>

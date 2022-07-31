@@ -1,0 +1,16 @@
+require "hanami/validations"
+
+<%- depth = module_names.size -%>
+<%- module_names.each_with_index do |e, i| -%>
+<%= "  " * i %>module <%= e %>
+<%- end -%>
+<%= "  " * depth %>class <%= class_name %>
+<%= "  " * depth %>  include Hanami::Validations
+<%= "  " * depth %>  
+<%= "  " * depth %>  validations do
+<%= "  " * depth %>    # place your validation rules here
+<%= "  " * depth %>  end
+<%= "  " * depth %>end
+<%- (module_names.size - 1).downto(0) do |i| -%>
+<%= "  " * i %>end
+<%- end -%>

@@ -1,0 +1,38 @@
+require "hanami/interactor"
+require "hanami/validations"
+
+<%- depth = module_names.size -%>
+<%- module_names.each_with_index do |e, i| -%>
+<%= "  " * i %>module <%= e %>
+<%- end -%>
+<%= "  " * depth %>class <%= class_name %>
+<%= "  " * depth %>  include Hanami::Interactor
+<%= "  " * depth %>  
+<%= "  " * depth %>  class Validation
+<%= "  " * depth %>    include Hanami::Validations
+<%= "  " * depth %>    
+<%= "  " * depth %>    validations do
+<%= "  " * depth %>      # your validation rules
+<%= "  " * depth %>    end
+<%= "  " * depth %>  end
+<%= "  " * depth %>  
+<%= "  " * depth %>  def initialize()
+<%= "  " * depth %>    # set up the object
+<%= "  " * depth %>  end
+<%= "  " * depth %>  
+<%= "  " * depth %>  def call(params)
+<%= "  " * depth %>    # get it done
+<%= "  " * depth %>  end
+<%= "  " * depth %>  
+<%= "  " * depth %>  private
+<%= "  " * depth %>  
+<%= "  " * depth %>  def valid?(params)
+<%= "  " * depth %>    validation_result = Validation.new(params).validate
+<%= "  " * depth %>    error(validation_result.messages) if validation_result.failure?
+<%= "  " * depth %>    
+<%= "  " * depth %>    validation_result.success?
+<%= "  " * depth %>  end
+<%= "  " * depth %>end
+<%- (module_names.size - 1).downto(0) do |i| -%>
+<%= "  " * i %>end
+<%- end -%>

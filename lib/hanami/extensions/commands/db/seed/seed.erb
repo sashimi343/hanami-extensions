@@ -1,0 +1,10 @@
+require "hanami/extensions"
+require "hanami/environment"
+
+Hanami::Environment.new.require_project_environment
+Hanami::Components.resolve("all")
+seeder = Hanami::Extensions::Seeder.new
+
+# Your code goes here...
+# Example:
+# seeder.truncate_insert(UserRepository.new, "users.csv")
