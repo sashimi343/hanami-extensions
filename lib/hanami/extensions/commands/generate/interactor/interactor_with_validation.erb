@@ -28,7 +28,7 @@ require "hanami/validations"
 <%= "  " * depth %>  
 <%= "  " * depth %>  def valid?(params)
 <%= "  " * depth %>    validation_result = Validation.new(params).validate
-<%= "  " * depth %>    error(validation_result.messages) if validation_result.failure?
+<%= "  " * depth %>    error(validation_result.errors) if validation_result.failure?
 <%= "  " * depth %>    
 <%= "  " * depth %>    validation_result.success?
 <%= "  " * depth %>  end
